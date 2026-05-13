@@ -20,5 +20,5 @@ jobs:
 
       - name: Push image
         run: |
-          docker login -u esthadevops -p ${{secrets.REGISTRY_PASS}}
+          docker login -u esthadevops2022 -p ${{secrets.REGISTRY_PASS}}
           docker push esthadevops2022/my-portfolio_v2
