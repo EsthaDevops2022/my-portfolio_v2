@@ -23,5 +23,5 @@ jobs:
       - name: Push image
         run: |
               echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
-              docker push ${{ secrets.REGISTRY_USER }}/my-portfolio_v2:${{ github.run_number }}
-              docker push ${{ secrets.REGISTRY_USER }}/my-portfolio_v2
+              docker push ${{ secrets.DOCKER_USERNAME }}/my-portfolio_v2:${{ github.run_number }}
+              docker push ${{ secrets.DOCKER_USERNAME }}/my-portfolio_v2
