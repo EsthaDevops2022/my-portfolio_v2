@@ -1,370 +1,586 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <title> Estha Maddy - DevOps Portfolio</title>
-    
-    <!-- PWA Support -->
-    <link rel="manifest" href="{{ url_for('static', filename='manifest.json') }}">
-    <meta name="apple-mobile-web-app-capable" content="yes">
-    <meta name="apple-mobile-web-app-title" content="John Doe Portfolio">
-    
-    <!-- Font Preloading -->
-    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" as="style">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap">
-    
-    <style>
-        :root {
-            --primary: #4cc9f0;
-            --secondary: #4361ee;
-            --accent: #3a86ff;
-            --dark: #0d1b2a;
-            --darker: #1b263b;
-            --light: #f8f9fa;
-            --muted: #adb5bd;
-            --card-bg: rgba(255, 255, 255, 0.05);
-            --transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #4c1d95, #7c3aed);
-            color: var(--light);
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            min-height: 100vh;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        .container {
-            max-width: 1100px;
-            margin: 0 auto;
-            padding: 2rem 1.5rem;
-        }
+<title>Estha Maddy | Cloud DevOps Engineer</title>
 
-        /* Header Styles */
-        .header {
-            text-align: center;
-            padding: 2.5rem;
-            background: var(--card-bg);
-            border-radius: 16px;
-            backdrop-filter: blur(10px);
-            margin-bottom: 2.5rem;
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
-            transition: var(--transition);
-        }
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-        .header:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
-        }
+<style>
 
-        h1 {
-            margin: 0;
-            font-size: 2.8rem;
-            font-weight: 700;
-            background: linear-gradient(90deg, var(--accent), var(--primary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: -0.5px;
-            margin-bottom: 0.5rem;
-        }
+:root{
+    --bg:#0b1120;
+    --card:#111827;
+    --card-light:#1f2937;
+    --primary:#38bdf8;
+    --secondary:#2563eb;
+    --accent:#06b6d4;
+    --text:#f8fafc;
+    --muted:#94a3b8;
+}
 
-        .header p {
-            margin: 0.5rem 0;
-            font-size: 1.1rem;
-            color: var(--muted);
-        }
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
 
-        /* Section Styles */
-        .section {
-            background: var(--card-bg);
-            padding: 2rem;
-            border-radius: 16px;
-            margin-bottom: 2rem;
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: var(--transition);
-        }
+html{
+    scroll-behavior:smooth;
+}
 
-        .section:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-        }
+body{
+    font-family:'Inter',sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    overflow-x:hidden;
+}
 
-        h2 {
-            color: var(--accent);
-            font-size: 1.8rem;
-            font-weight: 600;
-            margin-top: 0;
-            margin-bottom: 1.5rem;
-            position: relative;
-            padding-bottom: 0.5rem;
-        }
+/* Animated Background */
 
-        h2::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(90deg, var(--primary), transparent);
-            border-radius: 3px;
-        }
+body::before{
+    content:"";
+    position:fixed;
+    width:100%;
+    height:100%;
+    top:0;
+    left:0;
+    z-index:-2;
 
-        /* Experience Section */
-        .experience-item {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 1.5rem;
-            border-radius: 12px;
-            margin-bottom: 1.5rem;
-            transition: var(--transition);
-        }
+    background:
+    radial-gradient(circle at 20% 20%, rgba(37,99,235,.35), transparent 30%),
+    radial-gradient(circle at 80% 30%, rgba(6,182,212,.30), transparent 30%),
+    radial-gradient(circle at 50% 90%, rgba(56,189,248,.25), transparent 35%);
 
-        .experience-item:hover {
-            background: rgba(255, 255, 255, 0.07);
-            transform: translateY(-3px);
-        }
+    animation: floatBG 12s ease-in-out infinite alternate;
+}
 
-        .experience-header {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 1rem;
-        }
+@keyframes floatBG{
+    from{
+        transform:scale(1);
+    }
+    to{
+        transform:scale(1.15);
+    }
+}
 
-        .experience-title {
-            font-weight: 600;
-            font-size: 1.2rem;
-            color: var(--light);
-            margin-right: 1rem;
-        }
+/* NAVBAR */
 
-        .experience-date {
-            color: var(--muted);
-            font-size: 0.9rem;
-            background: rgba(255, 255, 255, 0.05);
-            padding: 0.3rem 0.8rem;
-            border-radius: 20px;
-        }
+nav{
+    position:fixed;
+    width:100%;
+    top:0;
+    z-index:999;
+    backdrop-filter:blur(12px);
+    background:rgba(11,17,32,.75);
+    border-bottom:1px solid rgba(255,255,255,.08);
+}
 
-        ul {
-            padding-left: 1.5rem;
-            margin: 1rem 0;
-        }
+.nav-container{
+    max-width:1200px;
+    margin:auto;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    padding:20px;
+}
 
-        li {
-            margin-bottom: 0.8rem;
-            position: relative;
-            padding-left: 1.5rem;
-        }
+.logo{
+    font-size:1.2rem;
+    font-weight:700;
+    color:var(--primary);
+}
 
-        li::before {
-            content: '▹';
-            position: absolute;
-            left: 0;
-            color: var(--primary);
-        }
+nav ul{
+    display:flex;
+    list-style:none;
+    gap:25px;
+}
 
-        /* Skills Section */
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.8rem;
-            margin-top: 1.5rem;
-        }
+nav a{
+    color:var(--text);
+    text-decoration:none;
+}
 
-        .skill {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 0.5rem 1.2rem;
-            border-radius: 50px;
-            font-size: 0.9rem;
-            font-weight: 500;
-            transition: var(--transition);
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
+/* HERO */
 
-        .skill:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
-        }
+.hero{
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    padding:120px 20px 80px;
+}
 
-        /* Projects Section */
-        .project-item {
-            margin-bottom: 2rem;
-        }
+.hero-content{
+    max-width:900px;
+}
 
-        .project-item strong {
-            display: block;
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
-        }
+.hero h1{
+    font-size:4rem;
+    font-weight:800;
+    margin-bottom:15px;
 
-        /* Download Button */
-        .download-btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 0.8rem 1.8rem;
-            background: linear-gradient(90deg, var(--primary), var(--secondary));
-            color: white;
-            text-decoration: none;
-            border-radius: 50px;
-            font-weight: 600;
-            transition: var(--transition);
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-            border: none;
-            cursor: pointer;
-            margin-top: 1rem;
-        }
+    background:linear-gradient(
+        90deg,
+        #38bdf8,
+        #06b6d4
+    );
 
-        .download-btn:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 25px rgba(0, 0, 0, 0.2);
-            background: linear-gradient(90deg, var(--secondary), var(--accent));
-        }
+    -webkit-background-clip:text;
+    -webkit-text-fill-color:transparent;
+}
 
-        /* Animations */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+.hero h2{
+    color:var(--muted);
+    font-weight:400;
+    margin-bottom:25px;
+}
 
-        .container {
-            animation: fadeIn 0.8s ease-out;
-        }
+.hero p{
+    font-size:1.1rem;
+    line-height:1.8;
+    color:#cbd5e1;
+}
 
-        /* Responsive Adjustments */
-        @media (max-width: 768px) {
-            .container {
-                padding: 1.5rem 1rem;
-            }
-            
-            .header {
-                padding: 1.5rem;
-            }
-            
-            h1 {
-                font-size: 2.2rem;
-            }
-            
-            .section {
-                padding: 1.5rem;
-            }
-            
-            .experience-header {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.5rem;
-            }
-        }
-    </style>
+.buttons{
+    margin-top:35px;
+    display:flex;
+    justify-content:center;
+    gap:15px;
+    flex-wrap:wrap;
+}
+
+.btn{
+    text-decoration:none;
+    color:white;
+    padding:14px 28px;
+    border-radius:999px;
+    font-weight:600;
+    transition:.3s;
+}
+
+.btn-primary{
+    background:linear-gradient(
+        90deg,
+        var(--secondary),
+        var(--accent)
+    );
+}
+
+.btn-secondary{
+    border:1px solid rgba(255,255,255,.2);
+}
+
+.btn:hover{
+    transform:translateY(-3px);
+}
+
+/* SECTIONS */
+
+section{
+    padding:90px 8%;
+}
+
+.section-title{
+    text-align:center;
+    font-size:2.5rem;
+    margin-bottom:50px;
+}
+
+/* STATS */
+
+.stats{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.stat-card{
+    background:rgba(255,255,255,.04);
+    border:1px solid rgba(255,255,255,.08);
+    border-radius:18px;
+    padding:30px;
+    text-align:center;
+}
+
+.stat-number{
+    font-size:2.2rem;
+    color:var(--primary);
+    font-weight:800;
+}
+
+/* SKILLS */
+
+.skills-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+    gap:25px;
+}
+
+.skill-card{
+    background:var(--card);
+    border-radius:18px;
+    padding:25px;
+}
+
+.skill-card h3{
+    color:var(--primary);
+    margin-bottom:15px;
+}
+
+.skill-tags{
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+}
+
+.skill{
+    background:#1e293b;
+    padding:8px 14px;
+    border-radius:999px;
+    font-size:.9rem;
+}
+
+/* EXPERIENCE */
+
+.timeline{
+    max-width:900px;
+    margin:auto;
+}
+
+.timeline-item{
+    background:var(--card);
+    margin-bottom:25px;
+    padding:25px;
+    border-radius:18px;
+    border-left:4px solid var(--primary);
+}
+
+.timeline-item h3{
+    color:var(--primary);
+}
+
+.timeline-date{
+    color:var(--muted);
+    margin-bottom:15px;
+}
+
+/* PROJECTS */
+
+.projects{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+    gap:25px;
+}
+
+.project{
+    background:var(--card);
+    padding:25px;
+    border-radius:18px;
+    transition:.3s;
+}
+
+.project:hover{
+    transform:translateY(-6px);
+}
+
+.project h3{
+    color:var(--primary);
+    margin-bottom:15px;
+}
+
+/* CONTACT */
+
+.contact{
+    text-align:center;
+}
+
+.contact p{
+    margin-bottom:10px;
+}
+
+footer{
+    padding:30px;
+    text-align:center;
+    color:var(--muted);
+}
+
+@media(max-width:768px){
+
+.hero h1{
+    font-size:2.6rem;
+}
+
+nav ul{
+    display:none;
+}
+
+.section-title{
+    font-size:2rem;
+}
+
+}
+
+</style>
 </head>
-
 <body>
-    <div class="container">
-        <header class="header">
-            <h1>Estha Maddy</h1>
-            <p>DevOps Engineer</p>
-            <p>esthajames@yahoo.fr</p>
-            <p>Total Experience: 5+ Years</p>
-        </header>
 
-        <section class="section summary">
-            <h2>Professional Summary</h2>
-            <p>Experienced DevOps Engineer with over 5 years in automating, optimizing, and managing cloud infrastructure. Proficient in Docker, Kubernetes, AWS, Terraform, and bash scripting, with a proven track record of implementing CI/CD pipelines and container orchestration. Skilled in Linux server administration and infrastructure as code, delivering scalable and secure solutions.</p>
-        </section>
+<nav>
+<div class="nav-container">
+<div class="logo">Estha Maddy</div>
 
-        <section class="section">
-            <h2>Education</h2>
-            <div class="education-item">
-                <strong>BTech in Software Engineering</strong> - Tshwane University Of Technology<br>
-                <small>2011-2015</small>
-            </div>
-            <div class="education-item">
-                <strong>Certified Kubernetes Administrator (CKA)</strong> - Linux Foundation<br>
-                <small>2019</small>
-            </div>
-            <div class="education-item">
-                <strong>AWS Certified Solutions Architect</strong> - Amazon Web Services<br>
-                <small>2020</small>
-            </div>
-        </section>
+<ul>
+<li><a href="#skills">Skills</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#projects">Projects</a></li>
+<li><a href="#contact">Contact</a></li>
+</ul>
+</div>
+</nav>
 
-        <section class="section">
-            <h2>Skills</h2>
-            <div class="skills-list">
-                <span class="skill">Docker</span>
-                <span class="skill">Kubernetes</span>
-                <span class="skill">AWS</span>
-                <span class="skill">CI/CD</span>
-                <span class="skill">Linux</span>
-                <span class="skill">Terraform</span>
-                <span class="skill">Bash</span>
-                <span class="skill">Jenkins</span>
-                <span class="skill">Git</span>
-                <span class="skill">Python</span>
-                <span class="skill">Ansible</span>
-                <span class="skill">Prometheus</span>
-                <span class="skill">Grafana</span>
-            </div>
-        </section>
+<section class="hero">
 
-        <section class="section">
-            <h2>Experience</h2>
-            <article class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">Nexlify Tech - DevOps Engineer</div>
-                    <div class="experience-date">2021-Present</div>
-                </div>
-                <ul>
-                    <li>Automated deployments using Jenkins and Docker for microservices</li>
-                    <li>Wrote Terraform scripts to provision AWS infrastructure (EC2, S3, RDS)</li>
-                    <li>Managed Kubernetes clusters on AWS EKS for scalable applications</li>
-                    <li>Developed bash scripts for log rotation and cleanup on Linux servers</li>
-                    <li>Configured AWS ECS for container orchestration of production apps</li>
-                    <li>Implemented CI/CD pipelines with GitHub Actions for zero-downtime deployments</li>
-                </ul>
-            </article>
-            
-            <article class="experience-item">
-                <div class="experience-header">
-                    <div class="experience-title">CloudWave Solutions - Cloud Engineer</div>
-                    <div class="experience-date">2018-2021</div>
-                </div>
-                <ul>
-                    <li>Designed AWS architecture for scalable and fault-tolerant applications</li>
-                    <li>Used Terraform to deploy EC2 instances with auto-scaling groups</li>
-                    <li>Wrote bash scripts for automated server setup and configuration</li>
-                    <li>Managed Docker containers on AWS ECS for stateless applications</li>
-                    <li>Configured AWS CloudWatch for monitoring and alerting on metrics</li>
-                    <li>Automated S3 bucket creation and policies with Terraform</li>
-                </ul>
-            </article>
-        </section>
+<div class="hero-content">
 
-        <section class="section">
-            <h2>Projects</h2>
-            <article class="project-item">
-                <strong>CI/CD Pipeline</strong>
-                <p>Built an automated deployment system using Jenkins, Docker, and bash scripts. Integrated with AWS CodePipeline for zero-downtime deployments. Automated the build, test, and deployment process for microservices architecture.</p>
-            </article>
-            <article class="project-item">
-                <strong>Container Orchestration</strong>
-                <p>Implemented Kubernetes clusters on AWS EKS using Terraform for infrastructure provisioning. Wrote bash scripts to automate scaling and monitoring of pods. Configured Linux nodes for optimal performance with Docker runtime.</p>
-            </article>
-        </section>
+<h1>Cloud DevOps Engineer</h1>
 
-        <footer class="section">
-            <a href="/download-pdf" class="download-btn">Download PDF Resume</a>
-        </footer>
-    </div>
+<h2>AWS • Kubernetes • Terraform • CI/CD • DevSecOps</h2>
+
+<p>
+DevOps Engineer with 5+ years of experience designing,
+automating and optimizing highly available cloud infrastructure
+across AWS, Azure and Google Cloud. Specialized in
+Infrastructure as Code, Kubernetes platforms, CI/CD automation,
+cloud security and observability.
+</p>
+
+<div class="buttons">
+
+<a href="#projects" class="btn btn-primary">
+View Projects
+</a>
+
+<a href="Estha_Maddy_Resume.pdf"
+   download
+   class="btn btn-secondary">
+Download Resume
+</a>
+
+</div>
+
+</div>
+
+</section>
+
+<section>
+
+<h2 class="section-title">Professional Snapshot</h2>
+
+<div class="stats">
+
+<div class="stat-card">
+<div class="stat-number">5+</div>
+Years Experience
+</div>
+
+<div class="stat-card">
+<div class="stat-number">3</div>
+Cloud Platforms
+</div>
+
+<div class="stat-card">
+<div class="stat-number">20+</div>
+Technologies
+</div>
+
+<div class="stat-card">
+<div class="stat-number">100%</div>
+Infrastructure as Code
+</div>
+
+</div>
+
+</section>
+
+<section id="skills">
+
+<h2 class="section-title">Technical Skills</h2>
+
+<div class="skills-grid">
+
+<div class="skill-card">
+<h3>Cloud Platforms</h3>
+<div class="skill-tags">
+<span class="skill">AWS</span>
+<span class="skill">Azure</span>
+<span class="skill">GCP</span>
+</div>
+</div>
+
+<div class="skill-card">
+<h3>Infrastructure as Code</h3>
+<div class="skill-tags">
+<span class="skill">Terraform</span>
+<span class="skill">Ansible</span>
+<span class="skill">CloudFormation</span>
+</div>
+</div>
+
+<div class="skill-card">
+<h3>Containers & Kubernetes</h3>
+<div class="skill-tags">
+<span class="skill">Docker</span>
+<span class="skill">Kubernetes</span>
+<span class="skill">Helm</span>
+<span class="skill">EKS</span>
+<span class="skill">AKS</span>
+<span class="skill">GKE</span>
+</div>
+</div>
+
+<div class="skill-card">
+<h3>CI/CD</h3>
+<div class="skill-tags">
+<span class="skill">GitHub Actions</span>
+<span class="skill">Jenkins</span>
+<span class="skill">ArgoCD</span>
+<span class="skill">CodePipeline</span>
+</div>
+</div>
+
+<div class="skill-card">
+<h3>Security & DevSecOps</h3>
+<div class="skill-tags">
+<span class="skill">Vault</span>
+<span class="skill">Trivy</span>
+<span class="skill">SonarQube</span>
+<span class="skill">IAM</span>
+</div>
+</div>
+
+<div class="skill-card">
+<h3>Monitoring</h3>
+<div class="skill-tags">
+<span class="skill">Datadog</span>
+<span class="skill">Prometheus</span>
+<span class="skill">Grafana</span>
+<span class="skill">Splunk</span>
+</div>
+</div>
+
+</div>
+
+</section>
+
+<section id="experience">
+
+<h2 class="section-title">Experience</h2>
+
+<div class="timeline">
+
+<div class="timeline-item">
+<h3>Cloud DevOps Engineer — WEX Inc.</h3>
+<div class="timeline-date">Feb 2021 – Present</div>
+
+<ul>
+<li>Designed and maintained AWS cloud infrastructure.</li>
+<li>Built CI/CD pipelines using Jenkins and GitHub Actions.</li>
+<li>Automated infrastructure provisioning with Terraform.</li>
+<li>Developed automation using Python and Bash.</li>
+<li>Managed Docker and Kubernetes environments.</li>
+<li>Implemented monitoring and alerting using Datadog.</li>
+</ul>
+
+</div>
+
+<div class="timeline-item">
+<h3>Teller — TD Bank</h3>
+<div class="timeline-date">Sept 2018 – Feb 2021</div>
+
+<ul>
+<li>Processed customer transactions and maintained compliance.</li>
+<li>Delivered exceptional customer service and support.</li>
+</ul>
+
+</div>
+
+<div class="timeline-item">
+<h3>Linux Systems Administrator — Attorneys Guide</h3>
+<div class="timeline-date">Jan 2015 – Jun 2018</div>
+
+<ul>
+<li>Managed Linux infrastructure and user administration.</li>
+<li>Automated operations using Bash and Ansible.</li>
+<li>Performed patching, monitoring and incident response.</li>
+</ul>
+
+</div>
+
+</div>
+
+</section>
+
+<section id="projects">
+
+<h2 class="section-title">Projects</h2>
+
+<div class="projects">
+
+<div class="project">
+<h3>Multi-Tier AWS Infrastructure</h3>
+<p>
+Designed and provisioned a highly available AWS
+environment using Terraform, including networking,
+compute, storage and database resources.
+</p>
+</div>
+
+<div class="project">
+<h3>EKS Cluster Automation</h3>
+<p>
+Provisioned production-ready Kubernetes clusters
+using Terraform and automated deployment workflows.
+</p>
+</div>
+
+<div class="project">
+<h3>S3 Security Remediation</h3>
+<p>
+Developed Python and AWS Lambda automation
+to identify, encrypt and enforce compliance
+for unencrypted S3 buckets.
+</p>
+</div>
+
+</div>
+
+</section>
+
+<section id="contact">
+
+<h2 class="section-title">Contact</h2>
+
+<div class="contact">
+
+<p>Email: esthajames@yahoo.fr</p>
+
+<p>
+Open to Cloud Engineer, DevOps Engineer,
+Platform Engineer and SRE opportunities.
+</p>
+
+</div>
+
+</section>
+
+<footer>
+© 2026 Estha Maddy | Cloud DevOps Engineer
+</footer>
+
 </body>
 </html>
